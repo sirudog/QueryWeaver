@@ -68,7 +68,8 @@ class ResponseFormatterAgent:
             model=Config.COMPLETION_MODEL,
             messages=messages,
             temperature=0.3,  # Slightly higher temperature for more natural responses
-            top_p=1,
+            max_tokens=20000, # mandatory for Claude model, if not set, the default can be too small
+            #top_p=1,         # Claude Sonnet 4.5 model does not support both temperature and top_p
         )
 
         response = completion_result.choices[0].message.content
